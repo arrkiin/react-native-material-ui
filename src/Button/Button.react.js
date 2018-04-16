@@ -2,7 +2,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ViewPropTypes } from '../utils';
+const ViewPropTypes = View.propTypes;
 /* eslint-enable import/no-unresolved, import/extensions */
 import Icon from '../Icon';
 import RippleFeedback from '../RippleFeedback';

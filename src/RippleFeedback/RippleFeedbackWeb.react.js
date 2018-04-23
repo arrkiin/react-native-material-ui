@@ -74,7 +74,7 @@ class RippleFeedbackWeb extends PureComponent {
     super(props, context);
 
     // https://material.google.com/components/buttons.html#buttons-toggle-buttons
-    const maxOpacity = Color(props.color).dark() ? 0.12 : 0.3;
+    const maxOpacity = Color(props.color).isDark() ? 0.12 : 0.3;
 
     this.state = {
       scaleValue: new AnimatedValue(0),

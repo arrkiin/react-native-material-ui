@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import Color from 'color';
-import merge from 'lodash.merge';
 
 import { fontWeight } from './typography';
 import {
@@ -21,7 +20,7 @@ function darkenOrLighten(color, ratio = 0.15) {
 }
 
 export default function getTheme(theme, ...more) {
-    theme = merge(lightTheme, theme, ...more);
+    theme = Object.assign(lightTheme, theme, ...more);
 
     const {
         spacing, fontFamily, typography, palette,
@@ -30,8 +29,8 @@ export default function getTheme(theme, ...more) {
         spacing, fontFamily, typography, palette,
     };
 
-    theme = merge({
-        actionButton: StyleSheet.create(merge({
+    theme = Object.assign({
+        actionButton: StyleSheet.create(Object.assign({
             positionContainer: {
                 position: 'absolute',
                 bottom: 20,
@@ -104,7 +103,7 @@ export default function getTheme(theme, ...more) {
             },
         }, theme.actionButton)),
         // https://material.google.com/layout/metrics-keylines.html#metrics-keylines-touch-target-size
-        avatar: StyleSheet.create(merge({
+        avatar: StyleSheet.create(Object.assign({
             container: {
                 width: spacing.avatarSize,
                 height: spacing.avatarSize,
@@ -117,7 +116,7 @@ export default function getTheme(theme, ...more) {
                 color: palette.canvasColor,
             },
         }, theme.avatar)),
-        badge: StyleSheet.create(merge({
+        badge: StyleSheet.create(Object.assign({
             container: {
                 position: 'absolute',
                 width: 16,
@@ -142,7 +141,7 @@ export default function getTheme(theme, ...more) {
                 fontSize: 12,
             },
         }, theme.badge)),
-        button: StyleSheet.create(merge({
+        button: StyleSheet.create(Object.assign({
             container: {
                 height: 36,
                 alignItems: 'center',
@@ -159,19 +158,19 @@ export default function getTheme(theme, ...more) {
                 marginRight: 8,
             },
         }, theme.button)),
-        buttonFlat: StyleSheet.create(merge({}, theme.buttonFlat)),
-        buttonDisabled: StyleSheet.create(merge({
+        buttonFlat: StyleSheet.create(Object.assign({}, theme.buttonFlat)),
+        buttonDisabled: StyleSheet.create(Object.assign({
             text: {
                 color: palette.disabledTextColor,
             },
         }, theme.buttonDisabled)),
-        buttonRaised: StyleSheet.create(merge({
+        buttonRaised: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: '#fff',
                 borderColor: 'rgba(0,0,0,.12)',
             },
         }, theme.buttonRaised)),
-        buttonRaisedDisabled: StyleSheet.create(merge({
+        buttonRaisedDisabled: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.borderColor,
             },
@@ -179,7 +178,7 @@ export default function getTheme(theme, ...more) {
                 color: palette.disabledTextColor,
             },
         }, theme.buttonRaisedDisabled)),
-        bottomNavigation: StyleSheet.create(merge({
+        bottomNavigation: StyleSheet.create(Object.assign({
             container: {
                 height: 56,
                 backgroundColor: palette.canvasColor,
@@ -193,7 +192,7 @@ export default function getTheme(theme, ...more) {
                 justifyContent: 'center',
             },
         }, theme.bottomNavigation)),
-        bottomNavigationAction: StyleSheet.create(merge({
+        bottomNavigationAction: StyleSheet.create(Object.assign({
             container: {
                 flex: 1,
                 alignItems: 'center',
@@ -221,7 +220,7 @@ export default function getTheme(theme, ...more) {
                 fontSize: 14,
             },
         }, theme.bottomNavigationAction)),
-        card: StyleSheet.create(merge({
+        card: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.canvasColor,
                 borderRadius: 2,
@@ -231,7 +230,7 @@ export default function getTheme(theme, ...more) {
                 ...getPlatformElevation(2),
             },
         }, theme.card)),
-        dialog: StyleSheet.create(merge({
+        dialog: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.canvasColor,
                 borderRadius: 2,
@@ -266,7 +265,7 @@ export default function getTheme(theme, ...more) {
                 marginBottom: 8,
             },
         }, theme.dialog)),
-        checkbox: StyleSheet.create(merge({
+        checkbox: StyleSheet.create(Object.assign({
             container: {
                 flex: 1,
                 flexDirection: 'row',
@@ -281,19 +280,19 @@ export default function getTheme(theme, ...more) {
                 flex: 1,
             },
         }, theme.checkbox)),
-        divider: StyleSheet.create(merge({
+        divider: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.borderColor,
                 height: StyleSheet.hairlineWidth,
             },
         }, theme.divider)),
-        drawer: StyleSheet.create(merge({
+        drawer: StyleSheet.create(Object.assign({
             container: {
                 flex: 1,
                 backgroundColor: white,
             },
         }, theme.drawer)),
-        drawerHeader: StyleSheet.create(merge({
+        drawerHeader: StyleSheet.create(Object.assign({
             container: {
                 position: 'absolute',
                 top: 0,
@@ -305,7 +304,7 @@ export default function getTheme(theme, ...more) {
                 height: 150,
             },
         }, theme.drawerHeader)),
-        drawerHeaderAccount: StyleSheet.create(merge({
+        drawerHeaderAccount: StyleSheet.create(Object.assign({
             container: {
                 flex: 1,
                 paddingBottom: 8,
@@ -329,12 +328,12 @@ export default function getTheme(theme, ...more) {
                 paddingLeft: 8,
             },
         }, theme.drawerHeaderAccount)),
-        drawerHeaderListItem: StyleSheet.create(merge({
+        drawerHeaderListItem: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: transparent,
             },
         }, theme.drawerHeaderListItem)),
-        drawerSection: StyleSheet.create(merge({
+        drawerSection: StyleSheet.create(Object.assign({
             container: {
                 paddingVertical: 8,
             },
@@ -362,7 +361,7 @@ export default function getTheme(theme, ...more) {
                 top: 2,
             },
         }, theme.drawerSection)),
-        drawerSectionActiveItem: StyleSheet.create(merge({
+        drawerSectionActiveItem: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: grey100,
             },
@@ -374,7 +373,7 @@ export default function getTheme(theme, ...more) {
                 color: palette.primaryColor,
             },
         }, theme.drawerSectionActiveItem)),
-        iconToggle: StyleSheet.create(merge({
+        iconToggle: StyleSheet.create(Object.assign({
             container: {
                 width: spacing.iconSize * 2,
                 height: spacing.iconSize * 2,
@@ -385,7 +384,7 @@ export default function getTheme(theme, ...more) {
                 color: palette.secondaryTextColor,
             },
         }, theme.iconToggle)),
-        listItem: StyleSheet.create(merge({
+        listItem: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.canvasColor,
                 height: 56,
@@ -438,7 +437,7 @@ export default function getTheme(theme, ...more) {
             },
         }, theme.listItem)),
         // https://material.io/guidelines/components/snackbars-toasts.html
-        snackbar: StyleSheet.create(merge({
+        snackbar: StyleSheet.create(Object.assign({
             container: {
                 flexDirection: 'row',
                 height: spacing.snackbarHeight,
@@ -464,7 +463,7 @@ export default function getTheme(theme, ...more) {
             },
         }, theme.snackbar)),
         // https://material.google.com/components/subheaders.html#
-        subheader: StyleSheet.create(merge({
+        subheader: StyleSheet.create(Object.assign({
             container: {
                 height: 48,
                 justifyContent: 'center',
@@ -475,7 +474,7 @@ export default function getTheme(theme, ...more) {
                 ...typography.body2,
             },
         }, theme.subheader)),
-        toolbar: StyleSheet.create(merge({
+        toolbar: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.primaryColor,
                 height: 56,
@@ -508,7 +507,7 @@ export default function getTheme(theme, ...more) {
                 color: palette.alternateTextColor,
             },
         }, theme.toolbar)),
-        toolbarSearchActive: StyleSheet.create(merge({
+        toolbarSearchActive: StyleSheet.create(Object.assign({
             container: {
                 backgroundColor: palette.canvasColor,
             },

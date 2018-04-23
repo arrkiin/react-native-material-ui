@@ -50,7 +50,7 @@ const defaultProps = {
   onPressOut: null,
   color: Color(black)
     .alpha(0.87)
-    .hslString(),
+    .string(),
   disabled: false,
   maxOpacity: 0.16,
   style: {},
@@ -243,7 +243,7 @@ class RippleFeedbackWeb extends PureComponent {
             borderRadius: diameter / 2,
             transform: [{ scale: scaleValue }],
             opacity: opacityRippleValue,
-            backgroundColor: rippleColor.hslString(),
+            backgroundColor: rippleColor.string(),
             zIndex: ELEVATION_ZINDEX,
           },
         ]}
@@ -264,7 +264,7 @@ class RippleFeedbackWeb extends PureComponent {
           {
             ...StyleSheet.absoluteFillObject,
             opacity: opacityBackgroundValue,
-            backgroundColor: rippleColor.hslString(),
+            backgroundColor: rippleColor.string(),
             zIndex: ELEVATION_ZINDEX,
           },
         ]}

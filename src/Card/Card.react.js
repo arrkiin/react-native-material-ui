@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved, import/extensions */
-import { View, AnimatedValue, AnimatedTiming } from 'react-native'
+import { View, Animated } from 'react-native'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 /* eslint-enable import/no-unresolved, import/extensions */
@@ -43,7 +43,7 @@ class Card extends Component {
   constructor(props, context) {
     super(props, context)
 
-    this.elevation = new AnimatedValue(2)
+    this.elevation = new Animated.Value(2)
     this.state = {
       styles: {
         ...getStyles(props, context),
@@ -63,7 +63,7 @@ class Card extends Component {
     } else {
       duration = from / (from - to) * 200
     }
-    AnimatedTiming(this.elevation, {
+    Animated.timing(this.elevation, {
       toValue: to,
       duration: duration,
     }).start()

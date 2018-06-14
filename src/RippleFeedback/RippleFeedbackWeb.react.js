@@ -2,10 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  AnimatedView,
-  AnimatedTiming,
-  AnimatedParallel,
-  AnimatedValue,
+  Animated,
   Easing,
   View,
   TouchableWithoutFeedback,
@@ -77,9 +74,9 @@ class RippleFeedbackWeb extends PureComponent {
     const maxOpacity = Color(props.color).isDark() ? 0.12 : 0.3;
 
     this.state = {
-      scaleValue: new AnimatedValue(0),
-      opacityRippleValue: new AnimatedValue(maxOpacity),
-      opacityBackgroundValue: new AnimatedValue(0),
+      scaleValue: new Animated.Value(0),
+      opacityRippleValue: new Animated.Value(maxOpacity),
+      opacityBackgroundValue: new Animated.Value(0),
       diameter: MAX_DIAMETER,
       maxOpacity,
       rippleColor: Color(props.color),
@@ -109,7 +106,7 @@ class RippleFeedbackWeb extends PureComponent {
     this.longPress = true;
 
     // Animation of long press is slightly different than onPress animation
-    AnimatedTiming(this.state.opacityBackgroundValue, {
+    Animated.timing(this.state.opacityBackgroundValue, {
       toValue: maxOpacity / 2,
       duration: 700,
       useNativeDriver: true,
@@ -123,22 +120,22 @@ class RippleFeedbackWeb extends PureComponent {
     const { onPress } = this.props;
     const { maxOpacity, diameter } = this.state;
 
-    AnimatedParallel([
+    Animated.parallel([
       // Display background layer thru whole over the view
-      AnimatedTiming(this.state.opacityBackgroundValue, {
+      Animated.timing(this.state.opacityBackgroundValue, {
         toValue: maxOpacity / 2,
         duration: 125 + diameter,
         easing: Easing.in(Easing.quad),
         useNativeDriver: false,
       }),
       // Opacity of ripple effect starts on maxOpacity and goes to 0
-      AnimatedTiming(this.state.opacityRippleValue, {
+      Animated.timing(this.state.opacityRippleValue, {
         toValue: 0,
         duration: 125 + diameter,
         useNativeDriver: false,
       }),
       // Scale of ripple effect starts at 0 and goes to 1
-      AnimatedTiming(this.state.scaleValue, {
+      Animated.timing(this.state.scaleValue, {
         toValue: 1,
         duration: 125 + diameter,
         easing: Easing.out(Easing.quad),
@@ -146,7 +143,7 @@ class RippleFeedbackWeb extends PureComponent {
       }),
     ]).start(() => {
       // After the effect is fully displayed we need background to be animated back to default
-      AnimatedTiming(this.state.opacityBackgroundValue, {
+      Animated.timing(this.state.opacityBackgroundValue, {
         toValue: 0,
         duration: 225,
         easing: Easing.out(Easing.quad),
@@ -182,22 +179,22 @@ class RippleFeedbackWeb extends PureComponent {
     // effect that is done here.
     if (this.longPress) {
       this.longPress = false;
-      AnimatedParallel([
+      Animated.parallel([
         // Hide opacity background layer, slowly. It has to be done later than ripple
         // effect
-        AnimatedTiming(this.state.opacityBackgroundValue, {
+        Animated.timing(this.state.opacityBackgroundValue, {
           toValue: 0,
           duration: 500 + diameter,
           useNativeDriver: false,
         }),
         // Opacity of ripple effect starts on maxOpacity and goes to 0
-        AnimatedTiming(this.state.opacityRippleValue, {
+        Animated.timing(this.state.opacityRippleValue, {
           toValue: 0,
           duration: 125 + diameter,
           useNativeDriver: false,
         }),
         // Scale of ripple effect starts at 0 and goes to 1
-        AnimatedTiming(this.state.scaleValue, {
+        Animated.timing(this.state.scaleValue, {
           toValue: 1,
           duration: 125 + diameter,
           easing: Easing.out(Easing.quad),
@@ -230,7 +227,7 @@ class RippleFeedbackWeb extends PureComponent {
       // we need set zindex for iOS, because the components with elevation have the
       // zindex set as well, thus, there could be displayed backgroundColor of
       // component with bigger zindex - and that's not good
-      <AnimatedView
+      <Animated.View
         key="ripple-view"
         pointerEvents="none"
         style={[
@@ -257,7 +254,7 @@ class RippleFeedbackWeb extends PureComponent {
       // we need set zindex for iOS, because the components with elevation have the
       // zindex set as well, thus, there could be displayed backgroundColor of
       // component with bigger zindex - and that's not good
-      <AnimatedView
+      <Animated.View
         key="ripple-opacity"
         pointerEvents="none"
         style={[

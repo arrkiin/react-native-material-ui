@@ -99,7 +99,7 @@ class Card extends Component {
     if (onPress) {
       return (
         <RippleFeedback onPress={onPress}>
-          {this.renderContent(elevation)}
+          {this.renderContent()}
         </RippleFeedback>
       )
     }
